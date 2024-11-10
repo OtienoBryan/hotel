@@ -16,7 +16,7 @@ const CheckoutPage = () => {
     { id: "cash", label: "Cash", image: "/cash.png" },
   ];
 
-  const handlePaymentSelection = (method) => {
+  const handlePaymentSelection = (method: React.SetStateAction<null>) => {
     setSelectedPayment(method);
   };
 
