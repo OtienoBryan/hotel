@@ -31,7 +31,7 @@ const OrdersPage = () => {
   // Fetch orders using react-query
   const { isLoading, error, data } = useQuery<OrderType[]>({
     queryKey: ["orders"],
-    queryFn: () => fetch("http://192.168.1.36:3000/api/orders", { method: "GET" }).then((res) => res.json()),
+    queryFn: () => fetch("http://localhost:3000/api/orders", { method: "GET" }).then((res) => res.json()),
   });
 
   // Mutation to update order status
