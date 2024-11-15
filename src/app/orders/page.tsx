@@ -23,7 +23,7 @@ const OrdersPage = () => {
 
   // Redirect to home if user is not authenticated and only if the component is mounted
   useEffect(() => {
-    if (status === "unauthenticated" && isMounted) {
+    if (status === "authenticated" && isMounted) {
       router.push("/");
     }
   }, [status, isMounted, router]);

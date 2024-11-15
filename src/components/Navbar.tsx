@@ -12,20 +12,20 @@ const Navbar = () => {
       {/* LEFT LINKS */}
       <div className="hidden md:flex gap-4 flex-1">
         <Link href="/">Homepage</Link>
-        <Link href="/menu">Menu</Link>
+
         <Link href="/">Contact</Link>
       </div>
           {/* LOGO */}
           
       <div className="flex justify-center items-center text-xl md:font-bold flex-1">
   
-      <Link href="/"><h2 className="font-extrabold">Macaash</h2>
-      {/* <Image 
-      src="/mac.png" 
+      <Link href="/" className=""><h2 className="font-extrabold text-1xl md:text-2xl">{/*MAA Hotel & Suites*/}</h2>
+      <Image 
+      src="/maa.png" 
       alt="logo" 
       width={150} 
       height={150} 
-      objectFit="contain" /> */}
+      objectFit="contain" />
       
       </Link>
       </div>

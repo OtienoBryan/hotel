@@ -9,7 +9,7 @@ const Footer = () => {
 
   <p className='text-[10px]'>CIT Logistics</p>
   </Link>
-  <p className='text-[10px]'>© 2024 Macaash. All Rights Reserved</p>
+  <p className='text-[10px]'>© 2024 Maa. All Rights Reserved</p>
 </div>
   )
 }

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 
 
-const getData =  async (id:string) => {
+const getData =  async (id:number) => {
   const res = await fetch (`http://localhost:3000/api/products/${id}`,{
     cache:"no-store"
   })
@@ -16,7 +16,7 @@ const getData =  async (id:string) => {
 }
 
 
-const SingleProductPage  = async ({params}:{params:{id:string}}) => {
+const SingleProductPage  = async ({params}:{params:{id:number}}) => {
   const { id } = await params; // Await params to access id
   // const singleProduct: ProductType = await fetchProductData(id);
    

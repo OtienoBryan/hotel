@@ -1,12 +1,26 @@
 export type MenuType = {
-    id     :   String;
+    id     :   number;
     slug  :    String;
     title   :  String;
-    desc   :   String;
-    color  :   String;
+    desc?   :   String;
+    color?  :   String;
     img   :    String;
+   
+    
     
   }[];
+
+   export type SubcategoryType = {
+    id: number; // Unique identifier for the subcategory
+    title: string; // Subcategory title
+    desc?: string; // Optional description for the subcategory
+    img: string; // Subcategory image URL
+    color?: string; // Optional color property for styling
+    menuTypeId: number; // ID of the category
+
+  };
+  
+
   export type ProductType = {
     id: string;
     title: string;
@@ -60,4 +74,11 @@ export type MenuType = {
       export type ActionTypes = {
         addToCart:(item:CartItemType)=> void;
         removeFromCart:(item:CartItemType)=> void;
-      }
+      };
+    //   export type SessionType = {
+    //     id: string; // Primary key
+    //     sessionToken: string; // Token for the user session
+    //     userId: string; // ID of the user associated with the session
+    //     expires: Date; // Expiration date of the session
+    //     tableNo?: number; // Optional table number
+    // };

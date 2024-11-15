@@ -1,7 +1,7 @@
 import prisma from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server"
 
-// FETCH ALL PRODUCTS
+// FETCH ALL sub cat
 export const GET = async (req:NextRequest) => {
     
     const {searchParams} = new URL(req.url)
@@ -10,13 +10,13 @@ export const GET = async (req:NextRequest) => {
 
     console.log("CATEGORY IS :"+cat)
 try{
-const products = await prisma.product.findMany({
+const subcategories = await prisma.subCategory.findMany({
 
     where:{
-       ...(cat ? { catid: parseInt(cat) } : { isFeatured: true }), 
+       ...(cat ? { catid: parseInt(cat) }:""), 
     },
 });
-return new NextResponse(JSON.stringify(products),
+return new NextResponse(JSON.stringify(subcategories),
 { status: 200 }
 );
 

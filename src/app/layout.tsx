@@ -12,7 +12,7 @@ import'react-toastify/dist/ReactToastify.css';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cafe Java's",
+  title: "MAA HOTEL",
   description: "Grab on the go",
 };
 

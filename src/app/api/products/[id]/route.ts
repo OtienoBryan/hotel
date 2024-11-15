@@ -13,7 +13,7 @@ export const GET = async (
     try {
         const product = await prisma.product.findUnique({
             where: {
-                id: id
+                id: parseInt(id)
             },
         });
         return new NextResponse(JSON.stringify(product), { status: 200 });

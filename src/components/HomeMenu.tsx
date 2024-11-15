@@ -18,12 +18,12 @@ const HomeMenu = async () => {
   const menu: MenuType = await getData();
   
   return (
-    <div className="p-4 lg:px-20 xl:px-40 h-auto flex flex-wrap items-center overflow-hidden ">
+    <div className="p-4 lg:px-20 xl:px-40 h-auto flex flex-wrap items-center overflow-hidden opacity-80">
       {menu.map((category) => (
         <Link
-          href={`/menu/${category.slug}`}
+          href={`/menu/${category.id}`}
           key={category.id as React.Key}
-          className="flex flex-col w-full md:w-1/3 h-1/3 bg-cover p-4 overflow-hidden relative"
+          className="flex flex-col w-full md:w-1/3 h-1/3 xl:w-1/3 xl:h-80 bg-cover p-4 overflow-hidden relative"
           style={{ backgroundImage: `url(${category.img})` }}
         >
           <div className="absolute inset-0 bg-customGreen opacity-0"></div> {/* Tint overlay */}

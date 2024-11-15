@@ -21,7 +21,7 @@ const MenuPage = async () => {
     <div className="p-4 lg:px-20 xl:px-40 h-auto flex flex-wrap items-center overflow-hidden ">
       {menu.map((category) => (
         <Link
-          href={`../menuProducts/${category.id}`}
+          href={`/menu/${category.id}`}
           key={category.id as React.Key}
           className="flex flex-col w-full md:w-1/3 h-1/3 bg-cover p-4 overflow-hidden relative"
           style={{ backgroundImage: `url(${category.img})` }}
@@ -31,7 +31,7 @@ const MenuPage = async () => {
             <h1 className="uppercase font-bold text-3xl">{category.title}</h1>
             <p className="whitespace-wrap text-sm my-8">{category.desc}</p>
             <button className="md:block bg-customGreen text-indigo-950 py-2 px-4 rounded-md">
-              Discover
+              Explore
             </button>
           </div>
         </Link>

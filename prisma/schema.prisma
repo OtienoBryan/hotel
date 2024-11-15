@@ -21,7 +21,6 @@ model Account {
   scope             String?
   id_token          String? @db.Text
   session_state     String?
-
   user user @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
@@ -38,6 +37,7 @@ model Session {
 model user {
   id            String    @id @default(cuid())
   name          String?
+  tableNo       String?  @unique
   email         String?   @unique
   emailVerified DateTime?
   phoneNumber   String   @unique // Add @unique if you want to query by phoneNumber
@@ -59,7 +59,7 @@ model VerificationToken {
 }
 
 model Category {
-  id        String    @id @default(cuid())
+  id     Int    @id @default(autoincrement())
   createdAt DateTime  @default(now())
   title     String
   desc      String
@@ -67,10 +67,23 @@ model Category {
   img       String
   slug      String    @unique
   products  Product[]
+  subCategories subCategory[]
+}
+model subCategory {
+  id     Int    @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  title     String
+  desc      String
+  color     String
+  img       String
+  slug      String    @unique
+  products  Product[]
+  catid     Int
+  category  Category @relation(fields: [catid], references: [id])
 }
 
 model Product {
-  id         String   @id @default(cuid())
+  id     Int    @id @default(autoincrement())
   createdAt  DateTime @default(now())
   title      String
   desc       String
@@ -78,13 +91,15 @@ model Product {
   price      Decimal
   isFeatured Boolean  @default(false)
   options    String   // Changed Json[] to String to store JSON array as serialized string
-  category   Category @relation(fields: [catSlug], references: [slug])
-  catSlug    String
+  catid   Int
+  category   Category @relation(fields: [catid], references: [id])
+  sub_id   Int
+  sub_category   subCategory @relation(fields: [sub_id], references: [id])
   orderProducts OrderProduct[]
 }
 
 model Order {
-  id        String   @id @default(cuid())
+  id     Int    @id @default(autoincrement())
   createdAt DateTime @default(now())
   price     Decimal
   status    String
@@ -95,9 +110,9 @@ model Order {
   tableNo   Int      @default(1) // Add tableNo with a default value of 1
 }
 model OrderProduct {
-  id        String   @id @default(cuid())
-  orderId   String   // Foreign key to Order
-  productId String   // Foreign key to Product
+  id     Int    @id @default(autoincrement())
+  orderId   Int   // Foreign key to Order
+  productId Int   // Foreign key to Product
   quantity  Int      // Quantity of the product ordered
   order     Order    @relation(fields: [orderId], references: [id])
   product   Product  @relation(fields: [productId], references: [id])
