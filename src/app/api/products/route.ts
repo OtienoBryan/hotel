@@ -4,13 +4,14 @@ import { NextRequest, NextResponse } from "next/server";
 // FETCH ALL PRODUCTS
 export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url);
-  const cat = searchParams.get("subcat");
+  const subcat = searchParams.get("sub_id");
 
   try {
     const products = await prisma.product.findMany({
       where: {
-        ...(cat ? { catid: parseInt(cat) } : { isFeatured: true }),
+        ...(subcat ? { sub_id: parseInt(subcat) } : { isFeatured: true }),
       },
+    
     });
     return new NextResponse(JSON.stringify(products), { status: 200 });
   } catch (err) {

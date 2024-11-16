@@ -27,6 +27,7 @@ export type MenuType = {
     desc   ?: string;
     img    ?: string;
     price   : number;
+    
     options?: { title: string; additionalPrice: number }[];
     };
  

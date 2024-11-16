@@ -3,9 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")  // Production Database
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")   // Local/Dev Database with Full Permissions
+  provider          = "mysql"
+  url               = env("DATABASE_URL")         // Production Database
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")  // Local/Dev Database with Full Permissions
 }
 
 model Account {
@@ -40,10 +40,10 @@ model user {
   tableNo       String?  @unique
   email         String?   @unique
   emailVerified DateTime?
-  phoneNumber   String   @unique // Add @unique if you want to query by phoneNumber
+  phoneNumber String   @unique  // Add @unique if you want to query by phoneNumber
   image         String?
   isAdmin       Boolean   @default(false)
-  password      String    // Add the password field here
+  password String  // Add the password field here
   accounts      Account[]
   sessions      Session[]
   orders        Order[]
@@ -90,10 +90,10 @@ model Product {
   img        String?
   price      Decimal
   isFeatured Boolean  @default(false)
-  options    String   // Changed Json[] to String to store JSON array as serialized string
-  catid   Int
+  options String  // Changed Json[] to String to store JSON array as serialized string
+  catid      Int
   category   Category @relation(fields: [catid], references: [id])
-  sub_id   Int
+  sub_id     Int
   sub_category   subCategory @relation(fields: [sub_id], references: [id])
   orderProducts OrderProduct[]
 }
@@ -107,13 +107,13 @@ model Order {
   user      user?    @relation(fields: [userEmail], references: [email])
   userEmail String?  // Make this field optional
   orderProducts OrderProduct[]
-  tableNo   Int      @default(1) // Add tableNo with a default value of 1
+  tableNo Int      @default(1)  // Add tableNo with a default value of 1
 }
 model OrderProduct {
   id     Int    @id @default(autoincrement())
-  orderId   Int   // Foreign key to Order
-  productId Int   // Foreign key to Product
-  quantity  Int      // Quantity of the product ordered
+  orderId   Int  // Foreign key to Order
+  productId Int  // Foreign key to Product
+  quantity  Int  // Quantity of the product ordered
   order     Order    @relation(fields: [orderId], references: [id])
   product   Product  @relation(fields: [productId], references: [id])
 }

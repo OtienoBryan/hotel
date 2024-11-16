@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image';
-import { ProductType } from '@/types/types';
+import { MenuType, ProductType } from '@/types/types';
 
-const getData =  async (category: string) => {
-  const res = await fetch(`http://localhost:3000/api/products?subcat=${category}`, {
+const getData = async (subcategory: string): Promise<ProductType[]> => {
+  const res = await fetch(`http://localhost:3000/api/subcategories?sub_id=${subcategory}`, {
     cache: "no-store"
-  })
+  });
 
   if (!res.ok) {
     throw new Error("Failed!");
@@ -15,13 +15,13 @@ const getData =  async (category: string) => {
 }
 
 type Props = {
-  params: { category: string }
+  params: { subcategory: string }
 }
 
 const CategoryPage = async ({ params }: Props) => {
-  const { category } =  params; // Await the params here
+  const { subcategory } =  params; // Await the params here
 
-  const products: ProductType[] = await getData(category);
+  const products: ProductType[] = await getData(subcategory);
   return (
     <div className='flex flex-wrap text-indigo-950 '>
       {products.map(item => (

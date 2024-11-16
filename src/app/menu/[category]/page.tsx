@@ -1,7 +1,7 @@
 import { MenuType } from "@/types/types";
 import Link from "next/link";
 import React from "react";
-
+//Subcategory
 const getData = async (category: string): Promise<MenuType> => {
   const res = await fetch(`http://localhost:3000/api/subcategories?cat=${category}`, {
     cache: "no-store"
