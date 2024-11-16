@@ -1,45 +1,47 @@
-import Link from 'next/link'
-import React from 'react'
-import Image from 'next/image';
-import { ProductType } from '@/types/types';
+import { MenuType } from "@/types/types";
+import Link from "next/link";
+import React from "react";
 
-const getData =  async (category: string) => {
+const getData = async (category: string): Promise<MenuType> => {
   const res = await fetch(`http://localhost:3000/api/subcategories?cat=${category}`, {
     cache: "no-store"
-  })
+  });
 
   if (!res.ok) {
-    throw new Error("Failed!");
+    throw new Error("Failed to fetch data!");
   }
-  return res.json()
-}
+
+  return res.json();
+};
 
 type Props = {
   params: { category: string }
 }
 
-const CategoryPage = async ({ params }: Props) => {
-  const { category } = await params; // Await the params here
+const MenuPage = async ({ params }: Props) => {
+  const category = await params.category; // Await the params here
 
-  const products: ProductType[] = await getData(category);
+  const menu: MenuType = await getData(category);
+
   return (
-    <div className='flex flex-wrap text-indigo-950 '>
-      {products.map(item => (
-        <Link className='w-full h-[25vh] border-b-2 border-r-2 border-customGreen shadow sm:w-1/2 lg:w-1/3 p-4 flex flex-row justify-between group odd:bg-bggreen'
-         href={`/product/${item.id}`} key={item.id}>
-          {/* IMAGE CONTAINER */}
-          {item.img && (
-            <div className="relative h-[80%]">
-              <Image src={item.img} alt="" height={250} width={250} className='object-contain rounded-md' />
-            </div>
-          )}
-
-          {/* TEXT CONTAINER */}
-          <div className='flex flex-col ml-5'>
-            <h1 className='sm:text-sm uppercase'>{item.title}</h1>
-            <p className='text-[12px]'>{item.desc}</p>
-            <h2 className='text-sm text-red-300'>KSh.{item.price}</h2>
-            <button className='group-hover:block uppercase bg-customGreen text-indigo-950 p-2 rounded-md w-20 text-sm'>Order</button>
+    <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col md:flex-row items-center">
+      {menu.map((item) => (
+        <Link
+          href={`/menuProducts/${item.id}`}
+          key={item.id}
+          className="w-full h-1/3 bg-cover p-8 md:h-1/2"
+          style={{ backgroundImage: `url(${item.img})` }}
+        >
+          <div className={`text-${item.color} w-1/2`}>
+            <h1 className="uppercase font-bold text-3xl">{item.title}</h1>
+            <p className="text-sm my-8">{item.desc}</p>
+            <button
+              className={`hidden 2xl:block ${
+                item.color === "black" ? "bg-black text-white" : "bg-customGreen text-red-500"
+              } py-2 px-4 rounded-md`}
+            >
+              Dis
+            </button>
           </div>
         </Link>
       ))}
@@ -47,4 +49,4 @@ const CategoryPage = async ({ params }: Props) => {
   );
 };
 
-export default CategoryPage;
+export default MenuPage;

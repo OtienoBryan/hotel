@@ -25,7 +25,7 @@ const Navbar = () => {
       alt="logo" 
       width={150} 
       height={150} 
-      objectFit="contain" />
+      style={{ objectFit: 'cover' }} />
       
       </Link>
       </div>
