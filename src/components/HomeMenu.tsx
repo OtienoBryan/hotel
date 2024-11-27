@@ -31,7 +31,7 @@ const HomeMenu = async () => {
             <h1 className="uppercase font-bold text-3xl">{category.title}</h1>
             <p className="whitespace-wrap text-sm my-8">{category.desc}</p>
             <button className="md:block bg-customGreen text-indigo-950 py-2 px-4 w-20 rounded-md">
-              Explore
+              Explore Category
             </button>
           </div>
         </Link>

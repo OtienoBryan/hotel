@@ -10,15 +10,25 @@ export type MenuType = {
     
   }[];
 
-   export type SubcategoryType = {
-    id         : number;  // Unique identifier for the subcategory
-    title      : string;  // Subcategory title
-    desc      ?: string;  // Optional description for the subcategory
-    img        : string;  // Subcategory image URL
-    color     ?: string;  // Optional color property for styling
-    menuTypeId : number;  // ID of the category
+  export type SubcategoryType = {
+    id    : number;
+    slug ? : string;
+    title : string;
+    desc? : String;
+    color?: String;
+    img   : String;
 
-  };
+  }[];
+
+  //  export type SubcategoryType = {
+  //   id         : string;  // Unique identifier for the subcategory
+  //   title      : string;  // Subcategory title
+  //   desc      ?: string;  // Optional description for the subcategory
+  //   img        : string;  // Subcategory image URL
+  //   color     ?: string;  // Optional color property for styling
+  //   menuTypeId : number;  // ID of the category
+
+  // };
   
 
   export type ProductType = {
@@ -27,6 +37,7 @@ export type MenuType = {
     desc   ?: string;
     img    ?: string;
     price   : number;
+    sub_id   : string;
     
     options?: { title: string; additionalPrice: number }[];
     };

@@ -3,8 +3,8 @@ import React from 'react'
 import Image from 'next/image';
 import { MenuType, ProductType } from '@/types/types';
 
-const getData = async (subcategory: string): Promise<ProductType[]> => {
-  const res = await fetch(`http://localhost:3000/api/subcategories?sub_id=${subcategory}`, {
+const getData = async (subcat: string)=> {
+  const res = await fetch(`http://localhost:3000/api/products?sub_id=${subcat}`, {
     cache: "no-store"
   });
 
@@ -18,7 +18,7 @@ type Props = {
   params: { subcategory: string }
 }
 
-const CategoryPage = async ({ params }: Props) => {
+const SubCategoryPage = async ({ params }: Props) => {
   const { subcategory } =  params; // Await the params here
 
   const products: ProductType[] = await getData(subcategory);
@@ -26,7 +26,7 @@ const CategoryPage = async ({ params }: Props) => {
     <div className='flex flex-wrap text-indigo-950 '>
       {products.map(item => (
         <Link className='w-full h-[25vh] border-b-2 border-r-2 border-customGreen shadow sm:w-1/2 lg:w-1/3 p-4 flex flex-row justify-between group odd:bg-bggreen'
-         href={`/menuProducts/${item.id}`} key={item.id}>
+         href={`/products/${item.id}`} key={item.id}>
           {/* IMAGE CONTAINER */}
           {item.img && (
             <div className="relative h-[80%]">
@@ -47,4 +47,4 @@ const CategoryPage = async ({ params }: Props) => {
   );
 };
 
-export default CategoryPage;
+export default SubCategoryPage;

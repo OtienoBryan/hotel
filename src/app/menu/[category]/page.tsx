@@ -2,7 +2,7 @@ import { MenuType } from "@/types/types";
 import Link from "next/link";
 import React from "react";
 //Subcategory
-const getData = async (category: string): Promise<MenuType> => {
+const getData = async (category: string) => {
   const res = await fetch(`http://localhost:3000/api/subcategories?cat=${category}`, {
     cache: "no-store"
   });
@@ -40,7 +40,7 @@ const MenuPage = async ({ params }: Props) => {
                 item.color === "black" ? "bg-black text-white" : "bg-customGreen text-red-500"
               } py-2 px-4 rounded-md`}
             >
-              Dis
+             Sub Category
             </button>
           </div>
         </Link>

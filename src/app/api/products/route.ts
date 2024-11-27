@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 // FETCH ALL PRODUCTS
 export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url);
-  const subcat = searchParams.get("sub_id");
+  const subcat = searchParams.get("subcat");
 
   try {
     const products = await prisma.product.findMany({
